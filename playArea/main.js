@@ -10,6 +10,7 @@ let startTime;
 let timerId;
 let turn = 0;   // 0 => 1p, 1 => 2p
 let gap = [ 0, 0 ];   // 5秒との時間差を入れる用
+let scoreBoard; 
 
 // 勝利数管理(2本先取)
 let p1_wins = 0;
@@ -107,6 +108,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
     p1Img.src = p1Data.img; // 画像変更
     p2Img.src = p2Data.img;
+
+    //スコアボード
+    scoreBoard = document.getElementById("score-board");
+    scoreBoard.textContent = `${p1_wins} - ${p2_wins}`;// 初期表示をセット
+    updateCDDisplay(); 
 });
 
 
@@ -201,7 +207,7 @@ stopBtn.addEventListener('click', () => {
     // ダメージ算出
     let damage;
     if (turn == 1) {
-        diff = Math.abs(gap[0]) - Math.abs(gap[1]);     // どっちの攻撃かを正負で判断
+        let diff = Math.abs(gap[0]) - Math.abs(gap[1]);     // どっちの攻撃かを正負で判断
         if (diff <= 0) {
             // 1pの攻撃
             damage = Number(DMcalc(p1Data, 0, gap, diff).toFixed(0));   // DMcalc関数の戻り値の小数点第一位を四捨五入
@@ -235,20 +241,18 @@ stopBtn.addEventListener('click', () => {
             damage = 0;
         }
 
-        // 勝敗数を記録する変数
-        window.p1_wins = window.p1_wins || 0;
-        window.p2_wins = window.p2_wins || 0;
-
         //　1PのHPが0になった場合（2Pがラウンド勝利）
         if(p1Data.hp <= 0) {
+            p2_wins++;  // 2Pに1勝プラス
+            scoreBoard.textContent = `${p1_wins} - ${p2_wins}`;
+
             document.querySelector('#comment2').textContent = localStorage.getItem("player1") + "を倒した！";
             setTimeout(() => {
                 document.getElementById("p1-hp").style.width = 0 + "%";
             }, 500);
-            window.p2_wins++; // 2Pに1勝プラス
 
             //2勝の判定
-            if (window.p2_wins >= 2) {
+            if (p2_wins >= 2) {
                 judge(0); // 1Pが負けた(0)としてゲーム終了処理へ
             } else {
                 // 次のラウンド　HP,CDをリセット
@@ -259,21 +263,23 @@ stopBtn.addEventListener('click', () => {
                     p2Data.cd = 1;
                     document.getElementById("p1-hp").style.width = "100%";
                     document.getElementById("p2-hp").style.width = "100%";
-                    document.querySelector('#comment1').textContent = "ROUND " + (window.p1_wins + window.p2_wins + 1);
-                    document.querySelector('#comment2').textContent = `1P: ${window.p1_wins}勝 / 2P: ${window.p2_wins}勝`;
+                    document.querySelector('#comment1').textContent = "ROUND " + (p1_wins + p2_wins + 1);
+                    document.querySelector('#comment2').textContent = `1P: ${p1_wins}勝 / 2P: ${p2_wins}勝`;
                 }, 3000);
             }
         } 
         //2PのHPが0になった場合（1Pがラウンド勝利）
         else if(p2Data.hp <= 0) {
+            p1_wins++;   // 1Pに1勝プラス
+            scoreBoard.textContent = `${p1_wins} - ${p2_wins}`;
+
             document.querySelector('#comment2').textContent = localStorage.getItem("player2") + "を倒した！";
             setTimeout(() => {
                 document.getElementById("p2-hp").style.width = 0 + "%";
             }, 500);
-            window.p1_wins++; // 1Pに1勝プラス
 
             // 2勝の判定
-            if (window.p1_wins >= 2) {
+            if (p1_wins >= 2) {
                 judge(1); // 2Pが負けた(1)としてゲーム終了処理へ
             } else {
                 // 次のラウンド　HP,CDをリセット
@@ -284,8 +290,8 @@ stopBtn.addEventListener('click', () => {
                     p2Data.cd = 1;
                     document.getElementById("p1-hp").style.width = "100%";
                     document.getElementById("p2-hp").style.width = "100%";
-                    document.querySelector('#comment1').textContent = "ROUND " + (window.p1_wins + window.p2_wins + 1);
-                    document.querySelector('#comment2').textContent = `1P: ${window.p1_wins}勝 / 2P: ${window.p2_wins}勝`;
+                    document.querySelector('#comment1').textContent = "ROUND " + (p1_wins + p2_wins + 1);
+                    document.querySelector('#comment2').textContent = `1P: ${p1_wins}勝 / 2P: ${p2_wins}勝`;
                 }, 3000);
             }
         }
