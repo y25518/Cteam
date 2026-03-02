@@ -10,6 +10,7 @@ html {
 .PlayerOption {
     display: flex;
     justify-content: space-around;
+    margin-top: 2rem;
 }
 .btn {
     width: 250px;
@@ -46,4 +47,40 @@ html {
 /* 選択キャラ　わかりやすく */
 .player-img.selected {
     border-color: #ee5151;   
+}
+/* 1P/2Pごとの選択エリアの設定 */
+.p1-select-area, .p2-select-area {
+    width: 45%; /* 親要素に対して45%の幅を持たせる */
+    text-align: center;
+}
+
+/* 画像が並ぶコンテナの設定 */
+.player-selector {
+    display: flex;
+    justify-content: center; /* 中央寄せ */
+    gap: 15px;               /* 画像同士の隙間 */
+    margin-top: 1rem;
+}
+
+/* ★★★ここが画像のサイズ設定です★★★ */
+.player-img {
+    width: 120px;            /* 幅を120pxに設定（お好みで調整してください） */
+    height: 120px;           /* 高さを120pxに設定（正方形にする場合） */
+    object-fit: contain;     /* 画像を枠内にきれいに収める（比率を保つ） */
+    cursor: pointer;          /* マウスカーソルを指の形にする */
+    border: 5px solid transparent; /* 選択時の枠線の場所を予め確保しておく */
+    border-radius: 10px;      /* 角を少し丸くする */
+    transition: all 0.2s;     /* ホバーや選択時の動きを滑らかにする */
+}
+
+/* 画像にマウスを乗せたときの効果 */
+.player-img:hover {
+    transform: scale(1.05);  /* 少しだけ大きくする */
+    background-color: rgba(0, 0, 0, 0.05); /* 薄い背景をつける */
+}
+
+/* ★★★選択された画像の強調設定★★★ */
+.player-img.selected {
+    border-color: #248eff;   /* 選択中の色（ボタンと同じ色）の枠線をつける */
+    box-shadow: 0 0 10px rgba(36, 142, 255, 0.5); /* 青い光を当てる */
 }
