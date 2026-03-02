@@ -5,8 +5,6 @@ const startBtn = document.getElementById("startbtn");
 const stopBtn = document.getElementById("stopbtn");
 const mainDisplay = document.getElementById("stopwatch");
 const player = [ document.getElementById("p1time"), document.getElementById("p2time") ];
-const p1cdDisplay = document.getElementById("p1cd");
-const p2cdDisplay = document.getElementById("p2cd");
 
 let startTime;
 let timerId;
@@ -34,29 +32,6 @@ p1Data = structuredClone(charMaster[p1Key]);    // 参照ではなく複製
 p1Data.cd = 1;
 p2Data = structuredClone(charMaster[p2Key]);
 p2Data.cd = 1;
-
-// クールダウン
-function updateCDDisplay() {
-    // 1Pの表示
-    if (p1Data.cd >= charMaster[p1Key].cd) {
-        p1cdDisplay.textContent = "スキルOK！";
-        p1cdDisplay.classList.add("ready"); // 必要に応じてCSSで装飾
-    } else {
-        const remaining = charMaster[p1Key].cd - p1Data.cd;
-        p1cdDisplay.textContent = `あと ${remaining} ターン`;
-        p1cdDisplay.classList.remove("ready");
-    }
-
-    // 2Pの表示
-    if (p2Data.cd >= charMaster[p2Key].cd) {
-        p2cdDisplay.textContent = "スキルOK！";
-        p2cdDisplay.classList.add("ready");
-    } else {
-        const remaining = charMaster[p2Key].cd - p2Data.cd;
-        p2cdDisplay.textContent = `あと ${remaining} ターン`;
-        p2cdDisplay.classList.remove("ready");
-    }
-}
 
 // タイマー更新
 function updateTime() {
