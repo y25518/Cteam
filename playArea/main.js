@@ -20,7 +20,7 @@ const charMaster = {
     "c1": { name: "キャラ1", hp: 100, atc: 100, crit:10, cd:3, img: "../img/player1.png" },
     "c2": { name: "キャラ2", hp: 130, atc: 80,  crit:5, cd:4, img: "../img/player2.png" },
     "c3": { name: "キャラ3", hp: 80,  atc: 120, crit:10, cd:2, img: "../img/player3.png" },
-    "c4": { name: "キャラ4", hp: 50,  atc: 0, crit:0, cd:7, img: "../img/player4.png" }
+    "c4": { name: "キャラ4", hp: 50,  atc: 0, crit:0, cd:7, img: "../img/player4.png" },
 };
 
 // LocalStorageからkeyを取得
@@ -135,7 +135,7 @@ function applySkills(playerData,playerIdx) {
         document.querySelector('#comment1').textContent = "スキル発動 HPを消費してクリティカル率上昇";
         document.querySelector('#comment2').textContent = "HP -10、クリティカル率 +15%";
     }
-    // キャラ3：最強になる
+    // キャラ4：最強になる
     if (playerIdx == "c4") {
         playerData.hp += 10000;
         playerData.atc += 10000; 
