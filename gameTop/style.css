@@ -1,0 +1,49 @@
+html {
+    max-width: 1700px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.GameSelect {
+    text-align: center;
+    padding-top: 20vh;
+}
+.PlayerOption {
+    display: flex;
+    justify-content: space-around;
+}
+.btn {
+    width: 250px;
+    height: 50px;
+    border-radius: 200px;
+    border : none;
+    background-color: #248eff;
+    color: #fff;
+    margin-top: 2rem;
+}
+.btn:hover {
+    background-color: #007bff;
+}
+/*キャラ選択・並び*/
+.player-selector {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    justify-content: center;
+}
+
+/* 画像自体の設定 */
+.player-img {
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    border: 3px solid #ddd;
+    border-radius: 12px;
+    transition: all 0.2s;
+    object-fit: cover;
+    background-color: #eee;
+}
+
+/* 選択キャラ　わかりやすく */
+.player-img.selected {
+    border-color: #ee5151;   
+}
