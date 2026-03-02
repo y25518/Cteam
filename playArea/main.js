@@ -242,7 +242,7 @@ stopBtn.addEventListener('click', () => {
             judgeIdx = 1;
         }
         else if (diff >= 0) {
-            // 2pの攻撃
+            // 2pの攻撃g
             damage = Number(DMcalc(p2Data, 1, gap, diff).toFixed(0));
             p1Data.hp -= damage;
             
