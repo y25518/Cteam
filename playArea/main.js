@@ -21,7 +21,7 @@ const charMaster = {
     "c1": { name: "キャラ1", hp: 100, atc: 100, crit:10, cd:3, img: "../img/player1.png" },
     "c2": { name: "キャラ2", hp: 130, atc: 80,  crit:5, cd:4, img: "../img/player2.png" },
     "c3": { name: "キャラ3", hp: 80,  atc: 120, crit:10, cd:2, img: "../img/player3.png" },
-    "c4": { name: "キャラ4", hp: 50,  atc: 0, crit:0, cd:7, img: "../img/player4.png" },
+    "c4": { name: "キャラ4", hp: 50,  atc: 0, crit:0, cd:5, img: "../img/player4.png" },
 };
 
 // LocalStorageからkeyを取得
@@ -64,7 +64,7 @@ function DMcalc (attackerData, turn, gap, diff) {
 
     if (Math.random() < (attackerData.crit / 100)) {    //crit%でクリティカルが発生、1.5倍
         console.log("クリティカルダメージ");
-        critDamage = 1.5;
+        critDamage = 2;
     }
 
     const finalDamage = baseDamage * multiplier * 0.7 * (attackerData.atc / 100) * critDamage;
@@ -127,10 +127,10 @@ function applySkills(playerData,playerIdx) {
     }
     // キャラ2：体力回復
     if (playerIdx == "c2") {
-        playerData.hp += 20;
+        playerData.hp += 30;
         if(playerData.hp > charMaster["c2"].hp) playerData.hp = charMaster["c2"].hp;
         document.querySelector('#comment1').textContent = "スキル発動 HPが回復！";
-        document.querySelector('#comment2').textContent = "HP +20";
+        document.querySelector('#comment2').textContent = "HP +30";
     }
     // キャラ3：体力消費でクリティカル率を獲得
     if (playerIdx == "c3") {
