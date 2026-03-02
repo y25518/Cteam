@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="GameSelect">
+        <h1>ストップウォッチゲーム</h1>
+        <h3>【ルール】</h3>
+        <ul>
+            <li>「スタート」ボタンを押すと、中央のストップウォッチと両プレイヤーのカウントが始まります。</li>
+            <li>タイマーが2.00秒を超えると表示が徐々に消え、目隠し状態になります。</li>
+            <li>自分の感覚で「今だ！」と思う瞬間に「ストップ」ボタンを押します。</li>
+            <li>5.00秒により近いプレイヤーがそのラウンドの勝者となります。
+                敗者はダメージを受け、HPが減少します。</li>
+            <li>相手のHPをゼロにしたプレイヤーの勝利です！</li>
+        </ul>
+        <div class="PlayerOption">            
+            <div class="p1-select-area">
+                <label>1Pネーム：<input type="text" id="player1Input" value="player1"></label>
+                <div>キャラクターを選択してください。</div>
+                <div class="player-selector" id="p1-chars">
+                    <img src="../img/player1.png" class="player-img selected" data-player="c1">
+                    <img src="../img/player2.png" class="player-img" data-player="c2">
+                    <img src="../img/player3.png" class="player-img" data-player="c3">
+                    <img src="../img/player4.png" class="player-img" data-player="c4">
+                </div>
+            </div>
+            <div class="p2-select-area">
+                <label>2Pネーム：<input type="text" id="player2Input" value="player2"></label>
+                <div>キャラクターを選択してください。</div>
+                <div class="player-selector" id="p2-chars">
+                    <img src="../img/player1.png" class="player-img selected" data-player="c1">
+                    <img src="../img/player2.png" class="player-img" data-player="c2">
+                    <img src="../img/player3.png" class="player-img" data-player="c3">
+                    <img src="../img/player4.png" class="player-img" data-player="c4">
+                </div>
+            </div>
+        </div>
+        <button id="startBtn" class="btn">ゲームスタート</button>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
